@@ -1,11 +1,16 @@
-import React from "react";
+import Task from './Task'
 
-function TaskList() {
+const TaskList = ({ tasks, filter }) => {
+  const taskList = tasks.filter(
+    (t) => !filter || filter === 'All' || t.category === filter
+  )
+  const renderTasks = taskList.map((t) => <Task key={t.text} {...t} />)
+
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+      <ul>{renderTasks}</ul>
     </div>
-  );
+  )
 }
 
-export default TaskList;
+export default TaskList
